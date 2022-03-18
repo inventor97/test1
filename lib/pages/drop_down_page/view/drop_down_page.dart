@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
+import 'package:test1/api/model/init_hive.dart';
 import 'package:test1/pages/drop_down_page/components/region_drop_down.dart';
 import 'package:test1/pages/drop_down_page/controller/drop_down_page_controller.dart';
 import 'package:test1/utils/constants/my_colors.dart';
@@ -33,7 +34,10 @@ class _DropDownPageState extends State<DropDownPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset("assets/png/gerb.png", width: 130.0),
+              Container(
+                padding: const EdgeInsets.all(25.0),
+                child: Image.asset("assets/png/gerb.png", width: 110.0),
+              ),
               Container(
                 padding: const EdgeInsets.only(right: 25.0, left: 25.0),
                 child: Column(
@@ -68,7 +72,11 @@ class _DropDownPageState extends State<DropDownPage> {
                               ),
                             ),
                             onPressed: () {
-                              c.typeDistrict(c.districtName??"");
+                              if(c.districtName!= null) {
+                                c.typeDistrict(c.districtName??"");
+                              } else if(c.regionName != null) {
+                                c.typeRegion(c.regionName??"");
+                              }
                             },
                             child: const Icon(Icons.refresh, color: MyColors.white),
                           );

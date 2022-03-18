@@ -7,6 +7,7 @@ class DropDownPageController extends GetxController {
   List<String> district = [];
   List<String> organizations = [];
   String? districtName;
+  String? regionName;
   String? orgName ;
   int regionId = 0;
   int districtId = 0;
@@ -26,6 +27,7 @@ class DropDownPageController extends GetxController {
     organizations = [];
     orgName = null;
     update();
+    regionName = v;
     regionId = InitHive.getRegionId(v);
     InitHive.addDistricts(regionId);
     district = InitHive.getDistricts(regionId);
