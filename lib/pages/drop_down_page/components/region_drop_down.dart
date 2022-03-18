@@ -47,6 +47,8 @@ class _RegionDropDownState extends State<RegionDropDown> {
           child: Text(e,style: Theme.of(context).textTheme.headline6),
         );
         }).toList(),
+      isDense: false,
+
       onChanged: widget.onChanged,
       onSaved: widget.onSaved,
       isExpanded: true,
