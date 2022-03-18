@@ -28,12 +28,12 @@ class _HomePageViewState extends State<HomePageView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: false,
-      primary: true,
-      body: OrientationBuilder(
-        builder: (context, orientation) =>
-        orientation == Orientation.landscape? const HorizontalHomePageItem():const VerticalHomePageItem()
-      ),
+      body: SafeArea(
+        child: OrientationBuilder(
+            builder: (context, orientation) =>
+            orientation == Orientation.landscape? const HorizontalHomePageItem():const VerticalHomePageItem()
+        ),
+      )
     );
   }
 
