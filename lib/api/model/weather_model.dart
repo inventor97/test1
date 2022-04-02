@@ -97,12 +97,10 @@ class WeatherModel {
   String timeOfDay;
 
 
-  factory WeatherModel.fromRawJson(String str) => WeatherModel.fromJson(json.decode(str));
-
   String toRawJson() => json.encode(toJson());
 
   factory WeatherModel.fromJson(Map<String, dynamic> json) => WeatherModel(
-    id: json["id"],
+    id:json['id'],
     cityId: json["city_id"],
     datetime: DateTime.parse(json["datetime"]),
     cloudAmount: json["cloud_amount"],

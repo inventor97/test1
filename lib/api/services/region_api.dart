@@ -24,20 +24,20 @@ class RegionData {
     final parsed = await jsonDecode(utf8.decode(response.bodyBytes));
     if(response.statusCode == 200) {
       for(var value in parsed) {
-        map[value['id']] = value['title'];
+        map[value["id"]] = value["title"];
       }
     }
     return map;
   }
 
-  static Future<Map<int, RegionModel>> getOrganizations(int id) async {
-    Map<int, RegionModel> map = {};
+  static Future<Map<int, String>> getOrganizations(int id) async {
+    Map<int, String> map = {};
     final uri = Uri.parse("http://my2.dev.gov.uz/azamat/ru/weather/get-organizations?districtId=$id");
     final response = await http.get(uri);
     final parsed = await jsonDecode(utf8.decode(response.bodyBytes));
     if(response.statusCode == 200) {
       for(var value in parsed) {
-        map[value['id']] = RegionModel(id: id, title: value['title']);
+        map[value["id"]] = value["title"];
       }
     }
     return map;

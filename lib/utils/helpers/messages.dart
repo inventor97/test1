@@ -45,6 +45,8 @@ class Messages extends Translations {
     'region':"Регион",
     'district':"Район",
     'organization':"Учреждение",
+    'night mode':"Ночной режим",
+    'language':"Языкь",
    };
 
   final Map<String, String> en = {
@@ -84,6 +86,8 @@ class Messages extends Translations {
     'region':"Region",
     'district':"District",
     'organization':"Organization",
+    'night mode':"Night mode",
+    'language':"Language",
   };
 
 
@@ -124,5 +128,7 @@ class Messages extends Translations {
     'region':"Hudud",
     'district':"tuman",
     'organization':"Organlar",
+    'night mode':"Tungi rejim",
+    'language':"Til",
   };
 }

@@ -9,16 +9,20 @@ class RegionDropDown extends StatefulWidget {
     required this.label,
     required this.hint,
     required this.onChanged,
-    required this.onSaved,
     this.selectedValue,
+    required this.loadable,
+    this.hasInternet,
+    this.onUpdate
   }) : super(key: key);
 
   final List<String> items;
   final String label;
   final onChanged;
-  final onSaved;
   final String hint;
   final String? selectedValue;
+  final bool loadable;
+  final bool? hasInternet;
+  final onUpdate;
 
   @override
   _RegionDropDownState createState() => _RegionDropDownState();
@@ -37,37 +41,52 @@ class _RegionDropDownState extends State<RegionDropDown> {
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButtonFormField(
-        value: widget.selectedValue,
-        focusNode: _focusNode,
-        onTap: _requestFocus,
-        items: widget.items.map( (e) {
-          return DropdownMenuItem(
-          value: e,
-          child: Text(e,style: Theme.of(context).textTheme.headline6),
-        );
-        }).toList(),
-      isDense: false,
-
-      onChanged: widget.onChanged,
-      onSaved: widget.onSaved,
-      isExpanded: true,
-      decoration: InputDecoration(
-        floatingLabelBehavior:FloatingLabelBehavior.always,
-        hintStyle: MyTextStyles.montserrat500(color: MyColors.subTextColor),
-        label: Text(widget.label,
-            style: Theme.of(context).textTheme.headline6
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+            padding: const EdgeInsets.only(left: 35.0),
+          child: Text(widget.label, style: Theme.of(context).textTheme.headline6),
+        ),
+        SizedBox(height: SizeConfig.v),
+        DropdownButtonFormField(
+          value: widget.selectedValue,
+          focusNode: _focusNode,
+          onTap: _requestFocus,
+          items: widget.items.map( (e) {
+            return DropdownMenuItem(
+              value: e,
+              child: Text(e,style: Theme.of(context).textTheme.headline6),
+            );
+          }).toList(),
+          isDense: false,
+          onChanged: widget.onChanged,
+          onSaved: widget.onChanged,
+          isExpanded: true,
+          dropdownColor: MyColors.color600,
+          iconSize: 36.0,
+          icon: widget.loadable?
+              widget.hasInternet??true? const CircularProgressIndicator(color: Colors.white) : IconButton(
+                  onPressed: widget.onUpdate,
+                  icon: const Icon(Icons.refresh_outlined, color: Colors.white))
+              : const Icon(Icons.keyboard_arrow_down, color: Colors.white),
+          decoration: InputDecoration(
+            fillColor: MyColors.color600,
+            hintStyle: MyTextStyles.montserrat500(color: MyColors.subTextColor),
+            hintText: widget.hint,
+            border:  OutlineInputBorder(
+                borderSide: const BorderSide(color: MyColors.color500, width: 2),
+                borderRadius: BorderRadius.circular(50.0)
+            ),
+            focusedBorder:   OutlineInputBorder(
+              borderRadius: BorderRadius.circular(50.0),
+              borderSide: const BorderSide(color: MyColors.color500,width: 2),
+            ),
           ),
-          hintText: widget.hint,
-          border:  OutlineInputBorder(
-              borderSide: const BorderSide(color: MyColors.black, width: 2),
-              borderRadius: BorderRadius.circular(20.0)
-          ),
-          focusedBorder:   OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20.0),
-            borderSide: const BorderSide(color: MyColors.color800,width: 2),
-          ),
-      ),
+        )
+      ],
     );
   }
 }

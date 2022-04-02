@@ -1,17 +1,10 @@
-
-import 'package:hive/hive.dart';
-
-part 'region_model.g.dart';
-@HiveType(typeId: 1)
-class RegionModel extends HiveObject {
+class RegionModel {
   RegionModel({
     required this.id,
     required this.title,
   });
 
-  @HiveField(0)
   int id;
-  @HiveField(1)
   String title;
 
 

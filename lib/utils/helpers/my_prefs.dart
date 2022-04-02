@@ -8,25 +8,34 @@ class MyPrefs {
     _instance = await SharedPreferences.getInstance();
   }
 
-  static void saveData(String key, dynamic value) async {
-    if (value is int) {
-      _instance.setInt(key, value);
-    } else if (value is String) {
-      _instance.setString(key, value);
-    } else if (value is bool) {
-      _instance.setBool(key, value);
-    }
+  static String? getRegion() {
+    String? s = _instance.getString('region');
+    return s;
   }
 
-  static Future<dynamic> readData(String key) async {
-    final prefs = await SharedPreferences.getInstance();
-    dynamic obj = prefs.get(key);
-    return obj;
+  static Future setRegion(String type) async {
+    await _instance.setString('region', type);
   }
 
-  static Future<bool> deleteData(String key) async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.remove(key);
+
+  static String? getDistrict() {
+    String? s = _instance.getString('district');
+    return s;
   }
+
+  static Future setDistrict(String type) async {
+    await _instance.setString('district', type);
+  }
+
+
+  static String? getOrg() {
+    String? s = _instance.getString('org');
+    return s;
+  }
+
+  static Future setOrg(String type) async {
+    await _instance.setString('org', type);
+  }
+
 
 }

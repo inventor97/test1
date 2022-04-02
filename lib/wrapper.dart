@@ -9,8 +9,7 @@ class Wrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    SizeConfig.initWidthAndHeight(size.width, size.height);
+    SizeConfig.initWidthAndHeight(context);
       return const HomePageView();
     }
   }

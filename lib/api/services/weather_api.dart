@@ -7,7 +7,7 @@ class WeatherApi {
   static Future<WeatherModel> getDetail(String city) async {
     final uri = Uri.parse("http://my2.dev.gov.uz/azamat/ru/weather/get-details?region=$city");
     final response = await http.post(uri);
-    final parsed = await jsonDecode(response.body);
+    final parsed = await jsonDecode(utf8.decode(response.bodyBytes));
     if(response.statusCode == 200) {
       return WeatherModel.fromJson(parsed);
     }
