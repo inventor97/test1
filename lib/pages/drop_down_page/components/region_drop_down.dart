@@ -48,7 +48,7 @@ class _RegionDropDownState extends State<RegionDropDown> {
       children: [
         Padding(
             padding: const EdgeInsets.only(left: 35.0),
-          child: Text(widget.label, style: Theme.of(context).textTheme.headline6),
+          child: Text(widget.label, style: MyTextStyles.montserrat500(fontSize: 7, color:  Colors.white)),
         ),
         SizedBox(height: SizeConfig.v),
         DropdownButtonFormField(
@@ -58,17 +58,17 @@ class _RegionDropDownState extends State<RegionDropDown> {
           items: widget.items.map( (e) {
             return DropdownMenuItem(
               value: e,
-              child: Text(e,style: Theme.of(context).textTheme.headline6),
+              child: Text(e,style: MyTextStyles.montserrat500(fontSize: 7, color:  Colors.white)),
             );
           }).toList(),
-          isDense: false,
+          // isDense: false,
           onChanged: widget.onChanged,
           onSaved: widget.onChanged,
           isExpanded: true,
           dropdownColor: MyColors.color600,
-          iconSize: 36.0,
+          iconSize: SizeConfig.v*4,
           icon: widget.loadable?
-              widget.hasInternet??true? const CircularProgressIndicator(color: Colors.white) : IconButton(
+              widget.hasInternet??true? const CircularProgressIndicator(color: Colors.white, strokeWidth: 1.5) : IconButton(
                   onPressed: widget.onUpdate,
                   icon: const Icon(Icons.refresh_outlined, color: Colors.white))
               : const Icon(Icons.keyboard_arrow_down, color: Colors.white),

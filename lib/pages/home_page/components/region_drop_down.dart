@@ -44,7 +44,7 @@ class _RegionDropDownState extends State<RegionDropDown> {
         items: widget.items.map( (e) {
           return DropdownMenuItem(
           value: e,
-          child: Text(e,style: Theme.of(context).textTheme.headline6),
+          child: Text(e, style: MyTextStyles.montserrat500(fontSize: 6, color: Colors.grey)),
         );
         }).toList(),
       onChanged: widget.onChanged,
@@ -53,7 +53,7 @@ class _RegionDropDownState extends State<RegionDropDown> {
         floatingLabelBehavior:FloatingLabelBehavior.always,
         hintStyle: MyTextStyles.montserrat500(color: MyColors.subTextColor),
         label: Text(widget.label,
-            style: Theme.of(context).textTheme.headline6
+            style: MyTextStyles.montserrat500(fontSize: 6, color: Colors.grey)
           ),
           hintText: widget.hint,
           border:  OutlineInputBorder(

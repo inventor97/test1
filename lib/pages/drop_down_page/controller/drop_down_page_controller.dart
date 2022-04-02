@@ -28,12 +28,23 @@ class DropDownPageController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
+    initCtrl();
+  }
+
+  Future<void> initCtrl() async {
     hasInternet = await InternetConnectionChecker().hasConnection;
     if(hasInternet) {
-      regionsMap = await RegionData.getRegions();
-      regions = List<String>.from(regionsMap.values.map((value) => value).toList());
-      regionId = regionsMap.keys.firstWhere((e) => regionsMap[e] == regionName);
-      loadData();
+      Future.wait([
+        getRegions()
+      ]).then((a) => {
+        regions = List<String>.from(regionsMap.values.map((value) => value).toList()),
+        if(regionName != null) {
+          regionId = regionsMap.keys.firstWhere((e) => regionsMap[e] == regionName),
+          update(),
+          loadData(),
+        },
+        update(),
+      });
     } else{
       district.add(districtName??"");
       regions.add(regionName??"");
@@ -89,6 +100,11 @@ class DropDownPageController extends GetxController {
 
   Future<void> getDistricts(int id) async {
     districtsMap = await RegionData.getDistricts(id);
+  }
+
+  Future<void> getRegions() async {
+    regionsMap = await RegionData.getRegions();
+    regionsMap;
   }
 
   Future<void> getOrganization(int id) async {

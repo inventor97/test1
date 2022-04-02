@@ -15,6 +15,7 @@ class SizeConfig {
   static late double _safeAreaVertical;
   static late double h;
   static late double v;
+  static late double sp;
 
   static void initWidthAndHeight(BuildContext context) {
     _mediaQueryData = MediaQuery.of(context);
@@ -23,6 +24,8 @@ class SizeConfig {
     blockHorizontal = screenWidth / 100;
     blockVertical = screenHeight / 100;
 
+    sp = sqrt((pow(screenWidth, 2) + pow(screenHeight, 2))) / 350;
+
     _safeAreaHorizontal =
         _mediaQueryData.padding.left + _mediaQueryData.padding.right;
     _safeAreaVertical =
@@ -30,5 +33,8 @@ class SizeConfig {
     h = (screenWidth - _safeAreaHorizontal) / 100;
     v = (screenHeight - _safeAreaVertical) / 100;
   }
+}
+extension SizeConfigExtension on num {
+  double get sp => this * 2.3;
 }
 

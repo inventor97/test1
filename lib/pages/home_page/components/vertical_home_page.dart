@@ -18,78 +18,91 @@ class _VerticalHomePageItemState extends State<VerticalHomePageItem> with Widget
   @override
   Widget build(BuildContext context) {
     final ctrl = Get.find<HomePageController>();
-    return SingleChildScrollView(
-      child: Container(
-        padding: const EdgeInsets.only(top: 55.0, right: 25.0, left: 25.0, bottom: 25.0),
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(ctrl.image),
-            fit: BoxFit.contain,
-          ),
+    return Container(
+      padding: const EdgeInsets.only(top: 185.0, right: 18.0, left: 18.0, bottom: 5.0),
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(ctrl.image),
+          fit: BoxFit.contain,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15.0),
-                      border: Border.all(color: MyColors.color800, width: 2.0)
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Transform(
-                        transform: Matrix4.translationValues(0, -75, 0),
-                        child: Image.asset("assets/png/gerb.png",width: 120.0,height: 120.0),
-                      ),
-                      GetBuilder<HomePageController>(builder: (c) {
-                        return Text(c.timeString, style: Theme.of(context).textTheme.headline1);
-                      }),
-                      SizedBox(height: SizeConfig.v*2),
-                      GetBuilder<HomePageController>(builder: (c) {
-                        return Text("${c.date}  ${c.month}" , style: Theme.of(context).textTheme.headline2);
-                      }),
-                      SizedBox(height: SizeConfig.v*2),
-                      GetBuilder<HomePageController>(builder: (c) {
-                        return Text(c.day , style: Theme.of(context).textTheme.headline3);
-                      }),
-                      SizedBox(height : SizeConfig.v*10),
-                    ],
-                  ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                width: SizeConfig.h*100,
+                padding: const EdgeInsets.only(right: 10.0, left: 10.0),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15.0),
+                    border: Border.all(color: MyColors.color800, width: 2.0)
                 ),
-                SizedBox(height: SizeConfig.v*4),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Transform(
+                      transform: Matrix4.translationValues(0, -115, 0),
+                      child: Image.asset("assets/png/gerb.png",width: SizeConfig.h*25,height: SizeConfig.v*25),
+                    ),
+                   SizedBox(
+                     width: double.infinity,
+                     child: Transform(
+                       transform: Matrix4.translationValues(0, -30, 0),
+                       child:  FittedBox(
+                         child: Column(
+                           children: [
+                             GetBuilder<HomePageController>(builder: (c) {
+                               return Text(c.timeString, style: Theme.of(context).primaryTextTheme.headline1);
+                             }),
+                             GetBuilder<HomePageController>(builder: (c) {
+                               return Text("${c.date}  ${c.month}" , style: Theme.of(context).primaryTextTheme.headline2);
+                             }),
+                             GetBuilder<HomePageController>(builder: (c) {
+                               return Text(c.day , style: Theme.of(context).primaryTextTheme.headline5);
+                             }),
+                             SizedBox(height : SizeConfig.v*2),
+                           ],
+                         ),
+                       ),
+                     ),
+                   )
+                  ],
+                ),
+              ),
+              SizedBox(height: SizeConfig.v*4),
+              FittedBox(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     GetBuilder<HomePageController>(builder: (c) {
-                      return Image.asset(c.weatherData.weatherCodeImage, width: 90,);
+                      return Image.asset(c.weatherData.weatherCodeImage, width: SizeConfig.h*35,);
                     }),
-                    SizedBox(width: SizeConfig.h*2),
+                    SizedBox(width: SizeConfig.h*5),
                     Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         GetBuilder<HomePageController>(builder: (c) {
-                          return Text(c.weatherData.airT>0?"+${c.weatherData.airT}°": "${c.weatherData.airT}°" ,style:Theme.of(context).textTheme.headline1);
+                          return Text(c.weatherData.airT>0?"+${c.weatherData.airT}°": "${c.weatherData.airT}°" ,style:Theme.of(context).textTheme.headline6);
+                        }),
+                        GetBuilder<HomePageController>(builder: (c) {
+                          return Text(c.city.tr ,style: Theme.of(context).textTheme.headline4);
                         }),
                         SizedBox(height: SizeConfig.v*2),
-                        GetBuilder<HomePageController>(builder: (c) {
-                          return Text(c.city.tr , style: Theme.of(context).textTheme.headline3);
-                        }),
                       ],
                     )
                   ],
                 ),
-              ],
-            ),
-          ],
-        ),
-      ),
+              )
+            ],
+          ),
+        ],
+      )
     );
   }
 

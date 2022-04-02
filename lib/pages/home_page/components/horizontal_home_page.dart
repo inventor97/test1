@@ -30,40 +30,40 @@ class _HorizontalHomePageItemState extends State<HorizontalHomePageItem> with  W
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        padding: const EdgeInsets.only(top: 65.0, right: 25.0, left: 25.0, bottom: 25.0),
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/png/background_light.png"),
-            fit: BoxFit.contain,
-          ),
+    return Container(
+      padding: const EdgeInsets.only(top: 65.0, right: 18.0, left: 18.0, bottom: 5.0),
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/png/background_light.png"),
+          fit: BoxFit.fitHeight,
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              margin: const EdgeInsets.only(top: 35.0),
-              padding: const EdgeInsets.only(top: 35.0, bottom: 35.0),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15.0),
-                  border: Border.all(color: MyColors.color800, width: 2.0)
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Transform(
-                    transform: Matrix4.translationValues(0, -95, 0),
-                    child: Image.asset("assets/png/gerb.png",width: 150.0,height: 150.0),
-                  ),
-                  Transform(
-                    transform: Matrix4.translationValues(0, -80, 0),
-                    child: Row(
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            margin: const EdgeInsets.only(top: 35.0),
+            padding: const EdgeInsets.only(right: 10.0, left:10.0, top: 35.0, bottom: 35.0),
+            width: SizeConfig.h*100,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15.0),
+                border: Border.all(color: MyColors.color800, width: 2.0)
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Transform(
+                  transform: Matrix4.translationValues(0, -95, 0),
+                  child: Image.asset("assets/png/gerb.png",width: SizeConfig.h*25,height: SizeConfig.v*25),
+                ),
+                Transform(
+                  transform: Matrix4.translationValues(0, -30, 0),
+                  child: FittedBox(
+                    child:  Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -72,9 +72,11 @@ class _HorizontalHomePageItemState extends State<HorizontalHomePageItem> with  W
                         }),
                         SizedBox(width: SizeConfig.h*3),
                         Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             GetBuilder<HomePageController>(builder: (c) {
-                              return Text("${c.date}  ${c.month}" , style: Theme.of(context).primaryTextTheme.headline2);
+                              return Text("${c.date}  ${c.month}" , style: Theme.of(context).primaryTextTheme.headline3);
                             }),
                             SizedBox(height: SizeConfig.v*2),
                             GetBuilder<HomePageController>(builder: (c) {
@@ -84,12 +86,14 @@ class _HorizontalHomePageItemState extends State<HorizontalHomePageItem> with  W
                         )
                       ],
                     ),
-                  )
-                ],
-              ),
+                  ),
+                )
+              ],
             ),
-            SizedBox(height: SizeConfig.v*4),
-            Row(
+          ),
+          SizedBox(height: SizeConfig.v*2),
+          FittedBox(
+            child:  Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -105,9 +109,9 @@ class _HorizontalHomePageItemState extends State<HorizontalHomePageItem> with  W
                   return Text(c.city.tr , style: Theme.of(context).primaryTextTheme.headline2);
                 }),
               ],
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }

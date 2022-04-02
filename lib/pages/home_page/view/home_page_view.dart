@@ -34,10 +34,11 @@ class _HomePageViewState extends State<HomePageView> {
       key: _key,
       extendBodyBehindAppBar: false,
       floatingActionButton: MyFloatingButton(onPressed: () {_key.currentState!.openDrawer();}),
-      body: SafeArea(
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
+      body: Center(
         child: OrientationBuilder(
             builder: (context, orientation) =>
-            orientation == Orientation.landscape? const HorizontalHomePageItem():const VerticalHomePageItem()
+            orientation == Orientation.landscape? const FittedBox(child: HorizontalHomePageItem()): const FittedBox(child: VerticalHomePageItem())
         ),
       ),
       drawer: const RightSideDrawer(),

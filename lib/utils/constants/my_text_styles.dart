@@ -9,6 +9,7 @@ class MyTextStyles {
   }) =>
       TextStyle(
         fontFamily: "MontserratRegular",
+        fontSize: fontSize.sp,
         color: color,
       );
 
@@ -18,6 +19,7 @@ class MyTextStyles {
   }) =>
       TextStyle(
         fontFamily: "MontserratMedium",
+        fontSize: fontSize.sp,
         color: color,
       );
 
@@ -27,6 +29,7 @@ class MyTextStyles {
   }) =>
       TextStyle(
         fontFamily: "MontserratBold",
+        fontSize: fontSize.sp,
         color: color,
       );
 }

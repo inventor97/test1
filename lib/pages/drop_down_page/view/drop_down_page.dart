@@ -21,40 +21,41 @@ class _DropDownPageState extends State<DropDownPage> {
   @override
   void initState() {
     super.initState();
-    Get.put(DropDownPageController());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyColors.color700,
-      body: SingleChildScrollView(
-        child: Form(
-          key: formKey,
+      body: Form(
+        key: formKey,
+        child: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                padding: const EdgeInsets.all(25.0),
-                child: Image.asset("assets/png/logo.png", width: 200.0, height: 220.0,),
+                padding: const EdgeInsets.only(right: 15.0, left: 15.0, top: 20.0),
+                child: Image.asset("assets/png/logo.png", width: SizeConfig.h*53, height: SizeConfig.v*45),
               ),
-              Container(
-                padding: const EdgeInsets.only(right: 25.0, left: 25.0),
+              SizedBox(
+                width: SizeConfig.h*80,
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     GetBuilder<DropDownPageController>(builder: (c) {
                       return RegionDropDown(
                         selectedValue: c.regionName,
-                          items: c.regions,
-                          label: "region".tr,
-                          hint: "region".tr,
-                          onChanged: (v) {
-                            c.typeRegion(v);
-                          },
+                        items: c.regions,
+                        label: "region".tr,
+                        hint: "region".tr,
+                        onChanged: (v) {
+                          c.typeRegion(v);
+                        },
                         loadable: false,
-                          );
+                      );
                     }),
                     SizedBox(height: SizeConfig.v*3),
                     GetBuilder<DropDownPageController>(builder: (c) {
@@ -89,11 +90,11 @@ class _DropDownPageState extends State<DropDownPage> {
                   ],
                 ),
               ),
-              SizedBox(height: SizeConfig.v*3),
+              SizedBox(height: SizeConfig.v*2),
             ],
           ),
-        ),
-      )
+        )
+      ),
     );
   }
 
